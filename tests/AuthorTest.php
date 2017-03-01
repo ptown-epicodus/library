@@ -5,6 +5,7 @@
     */
 
     require_once 'src/Author.php';
+    require_once 'src/Book.php';
 
     $server = 'mysql:host=localhost:8889;dbname=library_test';
     $username = 'root';
@@ -16,6 +17,7 @@
         protected function tearDown()
         {
             Author::deleteAll();
+            Book::deleteAll();
         }
 
         function test_save()
@@ -104,6 +106,49 @@
 
             //Assert
             $this->assertEquals($test_Author1, $result);
+        }
+
+        function test_addBook()
+        {
+            //Arrange
+            $author_name = 'John Doe';
+            $test_Author = new Author($author_name);
+            $test_Author->save();
+
+            $book_title = 'Bible';
+            $test_Book = new Book($book_title);
+            $test_Book->save();
+
+            //Act
+            $test_Author->addBook($test_Book);
+            $result = $test_Author->getBooks();
+
+            //Assert
+            $this->assertEquals([$test_Book], $result);
+        }
+
+        function test_getBooks()
+        {
+            //Arrange
+            $author_name = 'John Doe';
+            $test_Author = new Author($author_name);
+            $test_Author->save();
+
+            $book_title1 = 'Bible';
+            $test_Book1 = new Book($book_title1);
+            $test_Book1->save();
+
+            $book_title2 = 'Koran';
+            $test_Book2 = new Book($book_title2);
+            $test_Book2->save();
+
+            //Act
+            $test_Author->addBook($test_Book1);
+            $test_Author->addBook($test_Book2);
+            $result = $test_Author->getBooks();
+
+            //Assert
+            $this->assertEquals([$test_Book1, $test_Book2], $result);
         }
 
         function test_delete()
