@@ -42,7 +42,15 @@
             $GLOBALS['DB']->exec("DELETE FROM copies;");
         }
 
-
+        static function find($search_id)
+        {
+                $query = $GLOBALS['DB']->query("SELECT * FROM copies WHERE id = {$search_id};");
+            $query->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Copy', [
+                'book_id',
+                'id'
+            ]);
+            return $query->fetch();
+        }
     }
 
 
