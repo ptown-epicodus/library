@@ -31,6 +31,12 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function updateProperty($property, $value)
+        {
+            $GLOBALS['DB']->exec("UPDATE books SET {$property} = '{$value}' WHERE id = {$this->getId()};");
+            $this->$property = $value;
+        }
+
         static function getAll()
         {
             $query = $GLOBALS['DB']->query("SELECT * FROM books;");

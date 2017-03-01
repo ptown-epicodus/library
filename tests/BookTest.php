@@ -83,5 +83,21 @@
             //Assert
             $this->assertEquals($test_Book, $result);
         }
+
+        function test_updateProperty()
+        {
+            //Arrange
+            $title = 'Bible';
+            $new_title = 'Koran';
+            $test_Book = new Book($title);
+            $test_Book->save();
+
+            //Act
+            $test_Book->updateProperty('title', $new_title);
+            $result = $test_Book->getTitle();
+
+            //Assert
+            $this->assertEquals('Koran', $result);
+        }
     }
 ?>
