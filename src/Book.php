@@ -24,5 +24,26 @@
         {
             $this->title = $new_title;
         }
+
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO books (title) VALUES ('{$this->getTitle()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        static function getAll()
+        {
+            $query = $GLOBALS['DB']->query("SELECT * FROM books;");
+            $books = $query->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Book', [
+                'title',
+                'id'
+            ]);
+            return $books;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM books;");
+        }
     }
 ?>
