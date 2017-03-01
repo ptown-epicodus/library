@@ -51,4 +51,10 @@
             $author = $query->fetch();
             return $author;
         }
+
+        function updateProperty($property,$value)
+        {
+            $GLOBALS['DB']->exec("UPDATE authors SET {$property} = '{$value}' WHERE id = {$this->getId()};");
+            $this->$property = $value;
+        }
     }

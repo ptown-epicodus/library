@@ -88,6 +88,24 @@
             $this->assertEquals($test_Author2, $result);
         }
 
-        
+        function test_updateProperty()
+        {
+            //Arrange
+            $name1 = 'John Doe';
+            $test_Author1 = new Author($name1);
+            $test_Author1->save();
+
+            $name2 = 'Jane Doe';
+            $test_Author1->updateProperty("name",$name2);
+
+            //Act
+            $search_id = $test_Author1->getId();
+            $result = Author::find($search_id);
+
+            //Assert
+            $this->assertEquals($test_Author1, $result);
+        }
+
+
     }
 ?>
