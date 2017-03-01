@@ -36,12 +36,19 @@
             $queries = $GLOBALS['DB']->query("SELECT * FROM authors;");
             $authors = $queries->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Author" , array("name","id"));
             return $authors;
-
         }
 
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM authors;");
 
+        }
+
+        static function find($search_id)
+        {
+            $query = $GLOBALS['DB']->query("SELECT * FROM authors WHERE id= {$search_id};");
+            $query->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Author", array("name","id"));
+            $author = $query->fetch();
+            return $author;
         }
     }
