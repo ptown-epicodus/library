@@ -57,4 +57,9 @@
             $GLOBALS['DB']->exec("UPDATE authors SET {$property} = '{$value}' WHERE id = {$this->getId()};");
             $this->$property = $value;
         }
+
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM authors WHERE id = {$this->getId()};");
+        }
     }
