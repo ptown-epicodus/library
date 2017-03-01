@@ -24,4 +24,24 @@
         {
             $this->name = $new_name;
         }
+
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO authors (name) VALUES ('{$this->getName()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        static function getAll()
+        {
+            $queries = $GLOBALS['DB']->query("SELECT * FROM authors;");
+            $authors = $queries->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Author" , array("name","id"));
+            return $authors;
+
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM authors;");
+
+        }
     }
