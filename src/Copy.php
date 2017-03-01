@@ -30,6 +30,11 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM copies WHERE id = {$this->getId()};");
+        }
+
         static function getAll()
         {
             $query = $GLOBALS['DB']->query("SELECT * FROM copies;");
@@ -52,6 +57,4 @@
             return $query->fetch();
         }
     }
-
-
 ?>

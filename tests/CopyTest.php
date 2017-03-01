@@ -47,7 +47,7 @@
             $result = Copy::getAll();
 
             // Assert
-            $this->assertEquals([$test_Copy1,$test_Copy2],$result);
+            $this->assertEquals([$test_Copy1, $test_Copy2], $result);
         }
 
         function test_find()
@@ -68,6 +68,25 @@
 
             //Assert
             $this->assertEquals($test_Copy1, $result);
+        }
+
+        function test_delete()
+        {
+            //Arrange
+            $book_id1 = 4;
+            $test_Copy1 = new Copy($book_id1);
+            $test_Copy1->save();
+
+            $book_id2 = 5;
+            $test_Copy2 = new Copy($book_id2);
+            $test_Copy2->save();
+
+            // Act
+            $test_Copy1->delete();
+            $result = Copy::getAll();
+
+            // Assert
+            $this->assertEquals([$test_Copy2], $result);
         }
     }
 ?>
