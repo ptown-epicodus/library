@@ -21,8 +21,8 @@
         function test_save()
         {
             //Arrange
-            $title = 'Bible';
-            $test_Patron = new Patron($title);
+            $name = 'Jim';
+            $test_Patron = new Patron($name);
 
             //Act
             $test_Patron->save();
@@ -35,12 +35,12 @@
         function test_getAll()
         {
             //Arrange
-            $title1 = 'Bible';
-            $test_Patron1 = new Patron($title1);
+            $name1 = 'Jim';
+            $test_Patron1 = new Patron($name1);
             $test_Patron1->save();
 
-            $title2 = 'Koran';
-            $test_Patron2 = new Patron($title2);
+            $name2 = 'Eddie';
+            $test_Patron2 = new Patron($name2);
             $test_Patron2->save();
 
             //Act
@@ -53,12 +53,12 @@
         function test_deleteAll()
         {
             //Arrange
-            $title1 = 'Bible';
-            $test_Patron1 = new Patron($title1);
+            $name1 = 'Jim';
+            $test_Patron1 = new Patron($name1);
             $test_Patron1->save();
 
-            $title2 = 'Koran';
-            $test_Patron2 = new Patron($title2);
+            $name2 = 'Eddie';
+            $test_Patron2 = new Patron($name2);
             $test_Patron2->save();
 
             //Act
