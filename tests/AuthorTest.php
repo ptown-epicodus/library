@@ -158,7 +158,7 @@
             $test_Author1 = new Author($name1);
             $test_Author1->save();
 
-            $name2 = 'John Doe';
+            $name2 = 'Jane Doe';
             $test_Author2 = new Author($name2);
             $test_Author2->save();
 
@@ -169,7 +169,5 @@
             //Assert
             $this->assertEquals([$test_Author2], $result);
         }
-
-
     }
 ?>
