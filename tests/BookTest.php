@@ -100,6 +100,47 @@
             $this->assertEquals('Koran', $result);
         }
 
+        function test_addAuthor()
+        {
+            //Arrange
+            $title = 'Bible';
+            $test_Book = new Book($title);
+            $test_Book->save();
+
+            $author_name = 'John Doe';
+            $test_Author = new Author($author_name);
+            $test_Author->save();
+
+            //Act
+            $test_Book->addAuthor($test_Author);
+            $result = $test_Book->getAuthors();
+
+            $this->assertEquals([$test_Author], $result);
+        }
+
+        function test_getAuthors()
+        {
+            //Arrange
+            $title = 'Bible';
+            $test_Book = new Book($title);
+            $test_Book->save();
+
+            $author_name1 = 'John Doe';
+            $test_Author1 = new Author($author_name1);
+            $test_Author1->save();
+
+            $author_name2 = 'Jane Doe';
+            $test_Author2 = new Author($author_name2);
+            $test_Author2->save();
+
+            //Act
+            $test_Book->addAuthor($test_Author1);
+            $test_Book->addAuthor($test_Author2);
+            $result = $test_Book->getAuthors();
+
+            $this->assertEquals([$test_Author1, $test_Author2], $result);
+        }
+
         function test_delete()
         {
             //Arrange
