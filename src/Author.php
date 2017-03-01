@@ -41,7 +41,6 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM authors;");
-
         }
 
         static function find($search_id)
@@ -52,7 +51,7 @@
             return $author;
         }
 
-        function updateProperty($property,$value)
+        function updateProperty($property, $value)
         {
             $GLOBALS['DB']->exec("UPDATE authors SET {$property} = '{$value}' WHERE id = {$this->getId()};");
             $this->$property = $value;
