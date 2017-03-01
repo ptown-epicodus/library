@@ -50,7 +50,7 @@
             $this->assertEquals([$test_Book1, $test_Book2], $result);
         }
 
-        function deleteAll()
+        function test_deleteAll()
         {
             //Arrange
             $title1 = 'Bible';
@@ -67,6 +67,21 @@
 
             //Assert
             $this->assertEquals([], $result);
+        }
+
+        function test_find()
+        {
+            //Arrange
+            $title = 'Bible';
+            $test_Book = new Book($title);
+            $test_Book->save();
+            $search_id = $test_Book->getId();
+
+            //Act
+            $result = Book::find($search_id);
+
+            //Assert
+            $this->assertEquals($test_Book, $result);
         }
     }
 ?>

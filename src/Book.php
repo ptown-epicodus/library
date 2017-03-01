@@ -45,5 +45,16 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM books;");
         }
+
+        static function find($search_id)
+        {
+            $query = $GLOBALS['DB']->query("SELECT * FROM books WHERE id = {$search_id};");
+            $query->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Book', [
+                'title',
+                'id'
+            ]);
+            $book = $query->fetch();
+            return $book;
+        }
     }
 ?>
