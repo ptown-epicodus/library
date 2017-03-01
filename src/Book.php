@@ -62,5 +62,10 @@
             $book = $query->fetch();
             return $book;
         }
+
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM books WHERE id = {$this->getId()};");
+        }
     }
 ?>

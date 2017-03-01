@@ -99,5 +99,24 @@
             //Assert
             $this->assertEquals('Koran', $result);
         }
+
+        function test_delete()
+        {
+            //Arrange
+            $title1 = 'Bible';
+            $test_Book1 = new Book($title1);
+            $test_Book1->save();
+
+            $title2 = 'Koran';
+            $test_Book2 = new Book($title2);
+            $test_Book2->save();
+
+            //Act
+            $test_Book1->delete();
+            $result = Book::getAll();
+
+            //Assert
+            $this->assertEquals([$test_Book2], $result);
+        }
     }
 ?>
