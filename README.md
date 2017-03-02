@@ -12,9 +12,9 @@ This Silex website for keeping track of books checked out.
 ## Setup/Installation Requirements
 1. Set project root as working directory in CLI.
 2. Run `$ composer install --prefer-source --no-interaction`.
-3. Run `$ cd web`.
-4. Run `$ php -S localhost:8000`.
-5. Visit **`localhost:8000`** in web browser.
+3. Set document root in MAMP > Preferences to `{PROJECT_ROOT}/web`.
+4. Click 'Start Servers' in MAMP.
+5. Visit **`localhost:8888`** in web browser.
 
 
 ## Technologies Used
