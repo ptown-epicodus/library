@@ -101,5 +101,10 @@
             }
             return $result;
         }
+
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM checkouts WHERE id= {$this->id};");
+        }
     }
 ?>
