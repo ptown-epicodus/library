@@ -106,5 +106,11 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM checkouts WHERE id= {$this->id};");
         }
+
+        function updateProperty($property, $value)
+        {
+            $GLOBALS['DB']->exec("UPDATE patrons SET {$property} = {$value} WHERE id = {$this->getId()};");
+            $this->$property = $value;
+        }
     }
 ?>
