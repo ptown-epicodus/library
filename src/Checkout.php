@@ -78,7 +78,6 @@
         {
             $checkouts = [];
             $query = $GLOBALS['DB']->query("SELECT * FROM checkouts;");
-            // $checkouts = $query->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Checkout", ["copy_id", "patron_id", "checkout_date", "due_date", "return_date", "id"]);
             foreach ($query as $checkout)
             {
                 $new_checkout = new Checkout($checkout['copy_id'], $checkout['patron_id'], $checkout['checkout_date'], $checkout['due_date'], $checkout['return_date'], $checkout['id']);
@@ -92,6 +91,15 @@
             $GLOBALS['DB']->exec("DELETE FROM checkouts;");
         }
 
-
+        static function find($search_id)
+        {
+            $result = null;
+            $query = $GLOBALS['DB']->query("SELECT * FROM checkouts WHERE id = {$search_id};");
+            foreach ($query as $checkout)
+            {
+                $result = new Checkout($checkout['copy_id'], $checkout['patron_id'], $checkout['checkout_date'], $checkout['due_date'], $checkout['return_date'], $checkout['id']);
+            }
+            return $result;
+        }
     }
 ?>
