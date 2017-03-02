@@ -112,5 +112,14 @@
             $GLOBALS['DB']->exec("UPDATE patrons SET {$property} = {$value} WHERE id = {$this->getId()};");
             $this->$property = $value;
         }
+
+        function renew($interval = '21 Days')
+        {
+            $old_due_date = $this->getDueDate();
+            $new_due_date = date("Y-m-d", strtotime($old_due_date . $interval));;
+            $this->updateProperty('due_date', $new_due_date);
+        }
+
+
     }
 ?>
