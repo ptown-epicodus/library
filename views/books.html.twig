@@ -1,0 +1,32 @@
+{% extends "template.html.twig" %}
+
+{% block content %}
+    <h2>Manage Book Collection</h2>
+
+{% endblock %}
+
+
+{% block list %}
+    <h2>Books in Collection</h2>
+    {% if books is not empty %}
+    {% for book in books %}
+        <h3> {{ book.getTitle }}</h3>
+        <p>
+            {% if book.getAuthors is not empty%}
+            By:
+                {% for author in book.getAuthors %}
+                    {{ author.getName }},
+                {% endfor %}
+            {% endif %}
+            <form action="/books/add_author/{{book.getId}}" method="post">
+                <select id='' name='author'>
+                    {% for author in authors %}
+                        <option value="{{author.getId}}">{{ author.getName }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" name="button">Add Author</button>
+            </form>
+        </p>
+    {% endfor %}
+    {% endif %}
+{% endblock %}

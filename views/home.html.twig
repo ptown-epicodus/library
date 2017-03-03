@@ -1,0 +1,10 @@
+{% extends "template.html.twig" %}
+
+{% block content %}
+    <h2>Navigate the Library</h2>
+    <form method="get">
+        <button type="submit" name="books" formaction="/books">Manage Book Collection</button>
+        <button type="submit" name="authors" formaction="/authors">Manage Authors</button>
+        <button type="submit" name="patrons" formaction="/patrons">Manage Patrons</button>
+    </form>
+{% endblock %}
